@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Convidados - 2º Arraiá do Bravie</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #FFD700;
+            background-image: url('https://static.ibirapuera.br/wp-content/uploads/2022/06/festajuninaunib-scaled.jpg.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .container {
+            background-color: rgba(255, 248, 220, 0.9);
+            border: 2px solid #8B4513;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #8B0000;
+            margin: 0 0 20px 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 2px solid #8B4513;
+            border-radius: 5px;
+        }
+        .acompanhante {
+            margin-top: 10px;
+            border: 2px solid #8B4513;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #FFFACD;
+        }
+        button {
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #A0522D;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>2º Arraiá do Bravie</h1>
+    <h2>Lista de Convidados</h2>
+    <form id="guestForm">
+        <div class="form-group">
+            <label for="nomeProprietario">Nome do Proprietário:</label>
+            <input type="text" id="nomeProprietario" name="nomeProprietario" required>
+        </div>
+        <div class="form-group">
+            <label for="numeroApt">Número do Apartamento:</label>
+            <input type="text" id="numeroApt" name="numeroApt" required>
+        </div>
+        
+        <div id="acompanhantes">
+            <h3>Acompanhantes</h3>
+            <div class="acompanhante" data-index="1">
+                <div class="form-group">
+                    <label for="acompanhanteNome1">Nome do Acompanhante 1:</label>
+                    <input type="text" id="acompanhanteNome1" name="acompanhanteNome1">
+                </div>
+                <div class="form-group">
+                    <label for="acompanhanteIdade1">Faixa Etária do Acompanhante 1:</label>
+                    <select id="acompanhanteIdade1" name="acompanhanteIdade1">
+                        <option value="">Selecione</option>
+                        <option value="0-5">Até 5 anos (R$ 0,00)</option>
+                        <option value="5-8">De 5 a 8 anos (R$ 50,00)</option>
+                        <option value="8+">Acima de 8 anos (R$ 100,00)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="button-group">
+            <button type="button" onclick="addAcompanhante()">Adicionar Acompanhante</button>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    let acompanhanteIndex = 1;
+
+    function addAcompanhante() {
+        acompanhanteIndex++;
+        const acompanhanteDiv = document.createElement('div');
+        acompanhanteDiv.classList.add('acompanhante');
+        acompanhanteDiv.dataset.index = acompanhanteIndex;
+        acompanhanteDiv.innerHTML = `
+            <div class="form-group">
+                <label for="acompanhanteNome${acompanhanteIndex}">Nome do Acompanhante ${acompanhanteIndex}:</label>
+                <input type="text" id="acompanhanteNome${acompanhanteIndex}" name="acompanhanteNome${acompanhanteIndex}">
+            </div>
+            <div class="form-group">
+                <label for="acompanhanteIdade${acompanhanteIndex}">Faixa Etária do Acompanhante ${acompanhanteIndex}:</label>
+                <select id="acompanhanteIdade${acompanhanteIndex}" name="acompanhanteIdade${acompanhanteIndex}">
+                    <option value="">Selecione</option>
+                    <option value="0-5">Até 5 anos (R$ 0,00)</option>
+                    <option value="5-8">De 5 a 8 anos (R$ 50,00)</option>
+                    <option value="8+">Acima de 8 anos (R$ 100,00)</option>
+                </select>
+            </div>
+        `;
+        document.getElementById('acompanhantes').appendChild(acompanhanteDiv);
+    }
+</script>
+
+</body>
+</html>
